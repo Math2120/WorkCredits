@@ -1,6 +1,15 @@
 import time
 
-user_credits = 0
+# we retrieve the user's credits from the txt file
+file = open("user_credits.txt", "r")
+content = file.read()
+
+if content == '':
+    user_credits = 0
+else:
+    user_credits = int(content)
+
+file.close()
 
 def timer(seconds):
     credits = 0
@@ -25,5 +34,8 @@ def timer(seconds):
     return credits
 
 seconds = int(input("Enter the time in seconds: "))
-user_credits = timer(seconds)
-print(user_credits)
+user_credits += timer(seconds)
+
+# we add the credits to the txt file
+with open("user_credits.txt", "w") as file:
+    file.write(str(user_credits))
