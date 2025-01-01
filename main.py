@@ -3,33 +3,14 @@ import time
 from tkinter import *
 from tkinter import ttk
 
-notebook = ttk.Notebook()
 from timer import *
 from shop import *
 
-# we retrieve the user's credits from the txt file
-file = open("user_credits.txt", "r")
-content = file.read()
+frame_timer = timer_add_tkinter()
+frame_shop = shop_add_tkinter()
 
-if content == '':
-    user_credits = 0
-else:
-    user_credits = int(content)
+notebook.add(frame_timer, text="Timer")
+notebook.add(frame_shop, text="Shop")
 
-file.close()
-
-#####################
-#                   #
-#   Tkinter's part  #
-#                   #
-#####################
-
-root = Tk()
-root.minsize(400, 375)
-
-shop_add_tkinter1(root)
-shop_add_tkinter2(root)
-
-timer_add_tkinter(user_credits, root)
-
+notebook.pack()
 root.mainloop()

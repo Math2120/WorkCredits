@@ -1,15 +1,7 @@
 from tkinter import *
+from data import *
 
-# we retrieve the user's credits from the txt file
-file = open("user_credits.txt", "r")
-content = file.read()
-
-if content == '':
-    user_credits = 0
-else:
-    user_credits = int(content)
-
-file.close()
+user_credits = get_user_credits()
 
 def buy_product(selected_item, number):
     if number == '' or int(number) == 0:
@@ -64,15 +56,11 @@ def shop_add_tkinter2(root):
     buy = Button(root, text='Buy', command=attempt_purchase)
     buy.pack()
     
-def update(root):
-    # we retrieve the user's credits from the txt file
-    file = open("user_credits.txt", "r")
-    content = file.read()
-
-    if content == '':
-        user_credits = 0
-    else:
-        user_credits = int(content)
-
-    file.close()
-    credits_label.config(text='Number of credits : ' + str(user_credits))
+def shop_add_tkinter():
+    frame = Frame()
+    
+    shop_add_tkinter1(frame)
+    shop_add_tkinter2(frame)
+    add_button_update(frame, credits_label)
+    
+    return frame
