@@ -1,6 +1,3 @@
-global user_credits
-import time
-from tkinter import *
 from tkinter import ttk
 
 from timer import *

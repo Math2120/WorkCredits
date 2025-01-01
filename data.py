@@ -13,11 +13,19 @@ def get_user_credits():
         user_credits = int(content)
 
     file.close()
-    return user_credits
+    return int(user_credits)
+
+def save_user_credits(credits, credits_label):
+    # we add the credits to the txt file
+    with open("user_credits.txt", "w") as file:
+        file.write(str(credits))
+        
+    credits_label.config(text='Number of credits : ' + str(credits) + ' (5 credits = 1min)')
+    root.update()
 
 def update(label):
     user_credits = get_user_credits()
-    label.config(text='Number of credits : ' + str(user_credits))
+    label.config(text='Number of credits : ' + str(user_credits) + ' (5 credits = 1min)')
     
 def add_button_update(window, label):
     button_update = Button(window, text="Update the page", command=lambda: update(label))

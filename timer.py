@@ -20,7 +20,7 @@ def timer_add_tkinter():
     time_entry = Entry(frame)
     time_entry.pack()
     
-    play_timer = Button(frame, text="Timer", command=lambda: start_timer(user_credits, time_entry.get(), root, credits_label))
+    play_timer = Button(frame, text="Timer", command=lambda: start_timer(time_entry.get(), credits_label))
     play_timer.pack()
     
     add_button_update(frame, credits_label)
@@ -52,15 +52,11 @@ def timer(seconds, root):
     print(f'Total Credits Earned: {credits}')
     return credits
 
-def start_timer(user_credits, number_time, root, credits_label):
+def start_timer(number_time, credits_label):
     if number_time == '' or int(number_time) == 0:
         print("Sorry, but you can't work 0 seconds or nothing.")
     else:
+        user_credits = get_user_credits()
         user_credits += timer(int(number_time), root)
         
-        # we add the credits to the txt file
-        with open("user_credits.txt", "w") as file:
-            file.write(str(user_credits))
-            
-        credits_label.config(text='Number of credits : ' + str(user_credits))
-        root.update()
+        save_user_credits(credits_label)
