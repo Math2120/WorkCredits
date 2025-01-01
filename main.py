@@ -1,6 +1,9 @@
+global user_credits
 import time
 from tkinter import *
+from tkinter import ttk
 
+notebook = ttk.Notebook()
 from timer import *
 from shop import *
 
@@ -14,3 +17,19 @@ else:
     user_credits = int(content)
 
 file.close()
+
+#####################
+#                   #
+#   Tkinter's part  #
+#                   #
+#####################
+
+root = Tk()
+root.minsize(400, 375)
+
+shop_add_tkinter1(root)
+shop_add_tkinter2(root)
+
+timer_add_tkinter(user_credits, root)
+
+root.mainloop()
