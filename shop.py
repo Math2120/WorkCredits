@@ -23,18 +23,14 @@ def shop_add_tkinter1(root):
         global selected_item
         selected_item = listbox.get(listbox.curselection())    
 
-    title1 = Label(root, text='Welcome to the shop!')
-    title1.pack()
-
-    title2 = Label(root, text='Here you can buy time to play games, watch videos and more!')
-    title2.pack()
+    title1 = add_widgets(Label, root, "Welcome to the shop!")
+    title2 = add_widgets(Label, root, "Here you can buy time to play games, watch videos and more!")
 
     global credits_label
     credits_label = Label(root, text='Number of credits : ' + str(user_credits) + ' (5 credits = 1min)')
     credits_label.pack()
 
-    title3 = Label(root, text='List of products :')
-    title3.pack()
+    title3 = add_widgets(Label, root, "List of products :")
 
     listbox = Listbox(root)
     listbox.pack()
@@ -50,16 +46,13 @@ def shop_add_tkinter2(root):
         try:
             selected_item
         except NameError:
-            print("Warning : Please select a product before purchasing.")
+            print("Please select a product before purchasing.")
         else:
             user_credits = get_user_credits()
             buy_product(selected_item, number.get(), user_credits) 
 
-    number_label = Label(root, text='Amount of minutes you want to spend')
-    number_label.pack()
-
-    number = Entry(root, text='Enter the number of times you want the product.')
-    number.pack()
+    number_label = add_widgets(Label, root, "Amount of minute you want to spend")
+    number = add_widgets(Entry, root, "Enter the number of times you want the product.")
 
     buy = Button(root, text='Buy', command=attempt_purchase)
     buy.pack()

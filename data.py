@@ -30,6 +30,11 @@ def update(label):
 def add_button_update(window, label):
     button_update = Button(window, text="Update the page", command=lambda: update(label))
     button_update.pack()
+    
+def add_widgets(type, root, text):
+    widget = type(root, text=text)
+    widget.pack()
+    return widget
 
 root = Tk()
 root.minsize(400, 375)
