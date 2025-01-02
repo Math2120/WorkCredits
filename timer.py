@@ -1,26 +1,24 @@
 import time
 from tkinter import *
+
 from data import *
 
+# we add the widgets of the timer's page
 def timer_add_tkinter():
     frame = Frame()
     user_credits = get_user_credits()
-    
-    # we create the elements for the timer's part on the tkinter window
-    credits_label = add_widgets(Label, frame, "Numbe of credits : " + str(user_credits)) 
 
+    credits_label = add_widgets(Label, frame, "Numbe of credits : " + str(user_credits)) 
     # we global the timer label because he has to be accessed by the timer function
     global timer_label
     timer_label = add_widgets(Label, frame, "00:00:00")
-
     time_label = add_widgets(Label, frame, "Enter the time you want to work")
     time_entry = add_widgets(Entry, frame, "Enter the time you want to work")
-    
-    play_timer = Button(frame, text="Timer", command=lambda: start_timer(time_entry.get(), credits_label))
-    play_timer.pack()
+    play_timer = add_button(frame, "Start timer", lambda: start_timer(time_entry.get(), credits_label))
     
     return frame
 
+# the timer's function
 def timer(seconds, root):
     credits = 0
     initial_seconds = seconds
@@ -44,13 +42,14 @@ def timer(seconds, root):
     timer_label.config(text='00:00:00')
     root.update()
     print(f'Total Credits Earned: {credits}')
+    
     return credits
 
+# start the timer and handle the follow-up, like save the user's credits
 def start_timer(number_time, credits_label):
     if number_time == '' or int(number_time) == 0:
         print("Sorry, but you can't work 0 seconds or nothing.")
     else:
         user_credits = get_user_credits()
         user_credits += timer(int(number_time), root)
-        
         save_user_credits(user_credits, credits_label)
