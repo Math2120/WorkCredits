@@ -52,4 +52,5 @@ def start_timer(number_time, credits_label):
     else:
         user_credits = get_user_credits()
         user_credits += timer(int(number_time), root)
-        save_user_credits(user_credits, credits_label)
+        update_csv(user_credits, 'credits', get_inventory())
+        update(credits_label)

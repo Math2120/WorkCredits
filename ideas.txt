@@ -1,0 +1,10 @@
+add a inventory for purchases
+do a log system
+create an account systems -> but inventory in one doc
+implement settings
+    add background music
+    add music for the beginning and the end of the timer
+    add pomodor cycles
+add a quit button
+add a menu
+add a timer for the purchases

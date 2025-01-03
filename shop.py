@@ -1,6 +1,7 @@
 from tkinter import *
 
 from data import *
+from inventory import *
 
 # buy products based on the user's credits
 def buy_product(selected_item, number):
@@ -15,9 +16,13 @@ def buy_product(selected_item, number):
         if user_credits < amount_credits_needed:
             print("Sorry, but you don't have enough credits to buy that!")
         else:
-           print(f'Purchased product: {selected_item}, {number} time(s)')
            user_credits -= amount_credits_needed
-           save_user_credits(user_credits, credits_label)
+           
+           update_csv(user_credits, 'credits', get_inventory())
+           update_csv(int(get_value(selected_item)) + int(number), selected_item, get_inventory())
+           update(credits_label)
+           
+           print(f'Purchased product: {selected_item}, {number} time(s) for ' + str(amount_credits_needed) + ' credits.')
 
 # we add the first part of the widgets for the shop's page
 def shop_add_tkinter1(root):
